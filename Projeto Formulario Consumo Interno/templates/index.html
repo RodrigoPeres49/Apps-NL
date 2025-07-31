@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendas Sem Repasse</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+    <div class="titulo">
+        <img class="logo" src="../static/logo.png"/><h1>CONSUMO INTERNO NL</h1> 
+    </div>
+    <div class="loja">
+        <div id="loja_definida">Loja: </div>  
+        <form onsubmit="return nome_loja(event)">
+            <label for="loja">Selecione a Loja:</label>
+            <select id="loja" required>
+              <option value="">Carregando lojas...</option>
+            </select>
+            <button type="submit">Atualizar</button>
+        </form>
+    </div>
+    <div class="preenchimento">
+        <form onsubmit="adicionar(event)">
+            <label for="data">Data</label>
+            <input type="date" name="data" id="data" required>
+            <label for="produto">Produto</label>
+            <input type="text" name="produto" id="produto" required>
+            <label for="produto">Quantidade</label>
+            <input type="text" name="quantidade" id="quantidade" required>
+            <label for="preco">Preço</label>
+            <input type="text" name="preco" id="preco" required>
+            <button type="submit">Adicionar</button>
+        </form>
+    </div>
+    <div class="tabela">
+        
+        <table>
+            <thead>
+                <tr><th>Data</th><th>Produto</th><th>Quantidade</th><th>Preço</th><th>Valor Total</th><th>Ações</th></tr>
+            </thead>
+            <tbody id="tabela-corpo">
+            </tbody>
+        </table>
+
+    </div>
+    <button onclick="armazenar_dados()">Armazenar dados em um arquivo separado</button>
+    <script src="../static/script.js"></script>
+</body>
+</html>

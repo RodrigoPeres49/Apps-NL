@@ -1,0 +1,94 @@
+body{
+    padding: 0;
+    margin: 0;
+    border: 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.titulo{
+    background-color: green;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    padding-block: 0.2em ;
+    margin: 0;
+}
+
+.titulo h1{
+    align-self: center;
+    margin: 0;
+    padding: 0;
+}
+
+.logo{
+    align-self: center;
+    margin: 1em;
+    padding: 0;
+    width: 5em;
+    height: 5em;
+}
+
+.preenchimento{
+    padding: 0.3rem;
+    display: flex;
+    justify-content: center;
+}
+
+.preenchimento form{
+    display: flex;
+}
+
+.preenchimento label, .preenchimento input{
+    margin: 0.4rem;
+}
+
+.loja{
+    padding: 0.3rem;
+    display: flex;
+    justify-content: space-between;
+    font-size: small;
+    background-color: lightcoral;
+    align-items: center;
+}
+
+.loja form{
+    display: flex;
+}
+
+.loja label, .preenchimento input{
+    font-size: smaller;
+    margin: 0.4rem;
+    height: fit-content;
+}
+
+
+button{
+    cursor: pointer;
+    background-color: lightyellow;
+    border-radius: 0.5em;
+    font-weight: bold;
+    transition: ease-in-out, background-color, 0.3s;
+}
+button:hover{
+    background-color: red;
+    color: white;
+    font-weight: bold;
+}
+
+.tabela{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.tabela table{
+    justify-self: center;
+    border-collapse: collapse;
+}
+
+.tabela td, th, tr{
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-align: center;
+}
