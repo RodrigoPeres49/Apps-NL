@@ -4,6 +4,7 @@ import time
 import os
 from base import *
 
+
 # INICIANDO LANÇAMENTOS
 
 os.system("cls")
@@ -16,7 +17,7 @@ print(""" ------------------ APLICAÇÃO PARA LANÇAR VENDAS AUTOMATICAMENTE ---
       - Antes de iniciar, Verifique se todas as planilhas foram atualizadas para evitar erros no procedimento \n
            """)
 print("Verifique todos os itens que irão ser lançados no preenchimento:")
-print(df.head(100))
+print(df.head(350))
 
 os.system("pause")
 
@@ -43,7 +44,7 @@ def localizar_e_digitar(img, texto):
     if campo:
         pyautogui.click(campo)
         pyautogui.write(texto)
-        pyautogui.press("tab")
+        
     else:
         print(f"Campo não encontrado: {img}")
         return False
@@ -54,13 +55,13 @@ def selecionar_setor(valor_setor):
         print("Campo Setor da Loja não encontrado.")
         return
     pyautogui.click(pyautogui.locateCenterOnScreen(imgs["setor"], confidence=0.766))
-    time.sleep(0.5)
+    time.sleep(0.2)
     if valor_setor.upper() == "LOJA":
         img_setor = imgs["flv"]
     else:
         img_setor = imgs["flores"]
     
-    time.sleep(0.4)
+    time.sleep(0.2)
     setor = pyautogui.locateCenterOnScreen(img_setor, confidence=0.95)
     if setor:
         pyautogui.click(setor)
@@ -89,7 +90,7 @@ def preencher_formulario(parceiro, data_venda, setor, valor, quantidade):
     else:
         print("Botão de salvar não encontrado.")
 
-    time.sleep(1)
+    time.sleep(0.5)
 
 try:
     df = diferencas.dropna(subset=["Parceiro", "Data"])
@@ -100,28 +101,40 @@ except:
 
 os.system("cls")
 print("Iniciando preenchimento automático...")
-print("Vendas a serem lançadas:")
-print(df.head(100))
+print("Vendas lançadas:")
 
 for idx, row in df.iterrows():
     parceiro = str(int(row["Parceiro"]))
     data_venda = pd.to_datetime(row["Data"]).strftime("%d/%m/%Y")
-
-    # LANÇAMENTO FLV
-
-    if pd.notna(row.get("FLV")) and pd.notna(row.get("Qtd_FLV")):
-        valor_loja = f'{float(row["FLV"]):.2f}'.replace('.', ',')
-        qtd_loja = f'{float(row["Qtd_FLV"]):.2f}'.replace('.', ',')
-        preencher_formulario(parceiro, data_venda, "LOJA", valor_loja, qtd_loja)
-
-
-    # 2. LANÇAMENTO FLORES
-
-    if pd.notna(row.get("FLORES")) and pd.notna(row.get("Qtd_FLORES")):
-        valor_flores = f'{float(row["FLORES"]):.2f}'.replace('.', ',')
-        qtd_flores = f'{float(row["Qtd_FLORES"]):.2f}'.replace('.', ',')
-        preencher_formulario(parceiro, data_venda, "FLORES", valor_flores, qtd_flores)
     
+# LANÇAMENTO FLV
+
+    try:
+
+        if pd.notna(row.get("FLV")) and pd.notna(row.get("Qtd_FLV")):
+            valor_loja = f'{float(row["FLV"]):.2f}'.replace('.', ',')
+            qtd_loja = f'{float(row["Qtd_FLV"]):.2f}'.replace('.', ',')
+            preencher_formulario(parceiro, data_venda, "LOJA", valor_loja, qtd_loja)
+            print(f"Venda: {parceiro}, {data_venda}, Setor: LOJA, Valor: {valor_loja}, Qtd:{qtd_loja} Lançado com sucesso!")
+    
+    except:
+        print(f"Ocorreu um erro ao tentar preencher a Venda: {parceiro}, {data_venda}, Setor: LOJA, Valor: {valor_loja}, Qtd:{qtd_loja} Favor verificar")
+        os.system("pause")
+    
+# LANÇAMENTO FLORES
+
+    try:
+
+        if pd.notna(row.get("FLORES")) and pd.notna(row.get("Qtd_FLORES")):
+            valor_flores = f'{float(row["FLORES"]):.2f}'.replace('.', ',')
+            qtd_flores = f'{float(row["Qtd_FLORES"]):.2f}'.replace('.', ',')
+            preencher_formulario(parceiro, data_venda, "FLORES", valor_flores, qtd_flores)
+            print(f"Venda: {parceiro}, {data_venda}, Setor: FLORES, Valor: {valor_flores}, Qtd:{qtd_flores} Lançado com sucesso!")
+    
+    except:
+        print(f"Ocorreu um erro ao tentar preencher a Venda:\n {parceiro}, {data_venda}, Valor: {valor_flores}, Qtd:{qtd_flores} Favor verificar")
+        os.system("pause")
+
 
 print("Lançamentos concluídos com sucesso!")
 os.system("pause")
