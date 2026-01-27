@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Vendas Terceirizadas</title>
+    <link rel="stylesheet" href="{{url_for('static', filename= 'style.css')}}">
+</head>
+<body>
+    <div class="header">
+        <h2>Controle de Vendas Terceirizadas</h2>
+    </div>
+
+    <div class="body-app">
+
+        <h3>Aqui temos acesso a todas as planilhas para lançamentos e controle dos valores.</h3>
+
+        <table class="body-table">
+            <thead>
+                <tr><td class="title-table" colspan="3">LISTA DE ARQUIVOS</td></tr>
+                <tr><td>Loja</td><td>Data de Alteração</td><td>Ações</tr></th>
+            </thead>
+            <tbody>
+                {% for nome, arquivo in arquivos.items() %}
+                <tr>
+                    <td>{{ nome }}</td>
+                    <td>{{ get_datamodificacao(caminho, arquivo) }}</td>
+                    <td><a href="/abrir/{{ arquivo }}"><button>Abrir Arquivo</button></a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table> 
+        <table class="body-table">
+            <thead>
+                <tr><td class="title-table" colspan="2">LISTA DE PENDENCIAS - ( Clique em Verificar Pendências, atualize a planilha e reinicie a aplicação para atualizar as pendências )</td></tr>
+                <tr><td>Rede</td><td>Data Pendente</td></tr>
+            </thead>
+            <tbody>
+                {% for p in pendencias %}
+                <tr>
+                    <td>{{ p["Rede"] }}</td>
+                    <td>{{ p["Dias Pendentes"] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="ropade">
+        <ul>
+            <li>OBS:</li> 
+            <li>Antes de iniciar qualquer ação verifique se existe planilhas abertas.</li> 
+            <li>Salve as informações e feche-as corretamente para evitar erros no procedimento.</li>
+        </ul>
+    </div>
+    <div class="rodape">
+        <a class="link-arquivos" href="/abrir_outros/lancamentos_Automaticos">INICIAR LANÇAMENTOS AUTOMÁTICOS</a>
+        <a class="link-arquivos" href="/abrir_outros/relatorios">GERAR RELATÓRIOS CSV</a>
+        <a class="link-arquivos" href="/abrir/Vendas Terceirizadas Lançamentos.xlsx">VERIFICAR PENDÊNCIAS</a>
+        <a class="link-arquivos" href="/abrir_outros/pendencias">ENVIAR PENDÊNCIAS</a>
+    </div>
+
+</body>
+</h
