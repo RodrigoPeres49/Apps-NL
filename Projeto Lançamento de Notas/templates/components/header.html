@@ -1,0 +1,18 @@
+<header class="header">
+    <div class="header-container">
+        <a href="{{ url_for('index') }}" class="header-brand">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="NL Frutas e Legumes" class="brand-logo">
+            <div class="brand-text">
+
+                <span class="brand-title">Projeto</span>
+                <span class="brand-subtitle">Lançamento de notas</span>
+
+            </div>
+        </a>
+
+        <nav class="header-navigation">
+            <a href="{{ url_for('index') }}" class="navigation-link">Início</a>
+            <a href="{{ url_for('devolucao') }}" class="navigation-link">Devolução</a>
+        </nav>
+    </div>
+</header>

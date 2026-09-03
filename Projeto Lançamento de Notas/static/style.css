@@ -1,0 +1,918 @@
+/* ============================================================
+   PROJETO DE LANÇAMENTO DE NOTAS
+   Identidade visual baseada na marca NL
+   ============================================================ */
+
+
+/* ============================================================
+   VARIÁVEIS
+   ============================================================ */
+
+:root {
+
+    /* Cores principais */
+    --verde-principal: #008E3C;
+    --verde-claro: #2FC035;
+    --verde-hover: #007A33;
+
+    --vermelho: #E60D16;
+    --vermelho-hover: #C90B13;
+
+    /* Cores neutras */
+    --branco: #FFFFFF;
+    --fundo: #F5F7F6;
+    --cinza-claro: #E8ECEA;
+    --cinza-borda: #D9DFDC;
+
+    --texto-principal: #263238;
+    --texto-secundario: #66737A;
+    --texto-claro: #8A969C;
+
+    /* Dimensões */
+    --header-height: 72px;
+    --footer-height: 58px;
+
+    /* Outros */
+    --border-radius: 8px;
+    --border-radius-lg: 12px;
+
+    --sombra: 0 3px 12px rgba(0, 0, 0, 0.06);
+    --sombra-hover: 0 6px 18px rgba(0, 0, 0, 0.10);
+
+}
+
+
+/* ============================================================
+   RESET
+   ============================================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+
+body {
+
+    font-family: "Segoe UI", Arial,Helvetica,sans-serif;
+    background-color: var(--fundo);
+    color: var(--texto-principal);
+    font-size: 14px;
+    line-height: 1.5;
+
+}
+
+
+/* ============================================================
+   ESTRUTURA PRINCIPAL
+   ============================================================ */
+
+.app {
+
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+}
+
+
+.main {
+
+    flex: 1;
+    width: 100%;
+
+}
+
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+.header {
+
+    width: 100%;
+    height: var(--header-height);
+    background-color: var(--branco);
+    border-bottom: 1px solid var(--cinza-borda);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+    position: relative;
+    z-index: 10;
+
+}
+
+
+.header-container {
+
+    width: 100%;
+    max-width: 1200px;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+
+/* ============================================================
+   MARCA
+   ============================================================ */
+
+.header-brand {
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--texto-principal);
+
+}
+
+
+.brand-icon {
+
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background-color: var(--verde-principal);
+    color: var(--branco);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    border: 3px solid #EAF5EE;
+
+}
+
+
+.brand-text {
+
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+
+}
+
+
+.brand-title {
+
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--verde-principal);
+
+}
+
+
+.brand-subtitle {
+
+    font-size: 12px;
+    color: var(--texto-secundario);
+    margin-top: 3px;
+
+}
+
+.brand-logo {
+    width: 50px;
+    height: 50px;
+}
+
+
+/* ============================================================
+   NAVEGAÇÃO
+   ============================================================ */
+
+.header-navigation {
+
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+}
+
+
+.navigation-link {
+
+    position: relative;
+    padding: 9px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: var(--texto-secundario);
+    font-weight: 500;
+    transition:background-color 0.2s ease, color 0.2s ease;
+
+}
+
+
+.navigation-link:hover {
+
+    background-color: #EDF7F0;
+    color: var(--verde-principal);
+
+}
+
+
+.navigation-link::after {
+
+    content: "";
+    position: absolute;
+    left: 14px;
+    right: 14px;
+    bottom: 3px;
+    height: 2px;
+    background-color: var(--verde-principal);
+    transform: scaleX(0);
+    transition: transform 0.2s ease;
+
+}
+
+
+.navigation-link:hover::after {
+
+    transform: scaleX(1);
+
+}
+
+
+/* ============================================================
+   CONTEÚDO DAS PÁGINAS
+   ============================================================ */
+
+.home,
+.devolucao {
+
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 28px;
+
+}
+
+
+.page-title {
+
+    margin-bottom: 28px;
+
+}
+
+
+.page-title h1 {
+
+    font-size: 26px;
+    font-weight: 650;
+    color: var(--texto-principal);
+    margin-bottom: 6px;
+
+}
+
+
+.page-title p {
+
+    color: var(--texto-secundario);
+    font-size: 14px;
+
+}
+
+
+/* ============================================================
+   GRID DO MENU
+   ============================================================ */
+
+.menu-grid {
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+
+}
+
+
+/* ============================================================
+   CARD DO MENU
+   ============================================================ */
+
+.menu-card {
+
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    padding: 24px;
+    background-color: var(--branco);
+    border: 1px solid var(--cinza-borda);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--sombra);
+    text-decoration: none;
+    color: inherit;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+
+}
+
+
+.menu-card:hover {
+
+    transform: translateY(-3px);
+    box-shadow: var(--sombra-hover);
+    border-color: #BBDCC8;
+
+}
+
+
+.menu-card-icon {
+
+    flex-shrink: 0;
+    width: 52px;
+    height: 52px;
+    border-radius: 10px;
+    background-color: #EDF7F0;
+    color: var(--verde-principal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    font-weight: 600;
+
+}
+
+
+.menu-card-content h2 {
+
+    margin: 0 0 6px;
+    font-size: 17px;
+    color: var(--texto-principal);
+
+}
+
+
+.menu-card-content p {
+
+    color: var(--texto-secundario);
+    font-size: 13px;
+    line-height: 1.5;
+
+}
+
+
+/* ============================================================
+   FORMULÁRIO
+   ============================================================ */
+
+.form-card {
+
+    width: 100%;
+    max-width: 700px;
+    background-color: var(--branco);
+    border: 1px solid var(--cinza-borda);
+    border-radius: var(--border-radius-lg);
+    padding: 30px;
+    box-shadow: var(--sombra);
+
+}
+
+
+.form-card h2 {
+
+    font-size: 18px;
+    font-weight: 650;
+    margin-bottom: 24px;
+    color: var(--texto-principal);
+
+}
+
+
+/* ============================================================
+   GRUPOS DO FORMULÁRIO
+   ============================================================ */
+
+.form-group {
+
+    margin-bottom: 22px;
+
+}
+
+
+.form-group label {
+
+    display: block;
+    margin-bottom: 7px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--texto-principal);
+
+}
+
+
+.form-group input,
+.form-group select {
+
+    width: 100%;
+    height: 44px;
+    padding: 0 13px;
+    border: 1px solid var(--cinza-borda);
+    border-radius: var(--border-radius);
+    background-color: var(--branco);
+    color: var(--texto-principal);
+    font-family: inherit;
+    font-size: 14px;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+
+}
+
+
+.form-group input::placeholder {
+
+    color: var(--texto-claro);
+
+}
+
+
+.form-group input:hover,
+.form-group select:hover {
+
+    border-color: #B8C5BE;
+
+}
+
+
+.form-group input:focus,
+.form-group select:focus {
+
+    outline: none;
+    border-color: var(--verde-principal);
+    box-shadow:
+        0 0 0 3px rgba(0, 142, 60, 0.10);
+
+}
+
+
+/* ============================================================
+   AÇÕES DO FORMULÁRIO
+   ============================================================ */
+
+.form-actions {
+
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 28px;
+
+}
+
+
+/* ============================================================
+   BOTÃO PRINCIPAL
+   ============================================================ */
+
+.btn-primary {
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 0 20px;
+    border: none;
+    border-radius: var(--border-radius);
+    background-color: var(--verde-principal);
+    color: var(--branco);
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        transform 0.1s ease,
+        box-shadow 0.2s ease;
+
+}
+
+
+.btn-primary:hover {
+
+    background-color: var(--verde-hover);
+    box-shadow:
+        0 3px 8px rgba(0, 142, 60, 0.20);
+
+}
+
+
+.btn-primary:active {
+    transform: translateY(1px);
+}
+
+
+/* ============================================================
+   BOTÃO SECUNDÁRIO
+   ============================================================ */
+
+.btn-secondary {
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    padding: 0 17px;
+    border: 1px solid var(--cinza-borda);
+    border-radius: var(--border-radius);
+    background-color: var(--branco);
+    color: var(--texto-secundario);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
+
+}
+
+
+.btn-secondary:hover {
+
+    background-color: #F2F5F3;
+    border-color: #B8C5BE;
+    color: var(--verde-principal);
+
+}
+
+
+/* ============================================================
+   TABELA DE DEVOLUÇÕES
+   ============================================================ */
+
+.table-container {
+
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 10px;
+
+}
+
+
+.table-container table {
+
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background-color: var(--branco);
+    border: 1px solid var(--cinza-borda);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    font-size: 13px;
+
+}
+
+
+/* ============================================================
+   CABEÇALHO DA TABELA
+   ============================================================ */
+
+.table-container thead {
+
+    background-color: #F2F6F3;
+
+}
+
+
+.table-container th {
+
+    padding: 12px 14px;
+    text-align: left;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--texto-principal);
+    border-bottom: 1px solid var(--cinza-borda);
+    white-space: nowrap;
+
+}
+
+
+/* ============================================================
+   LINHAS
+   ============================================================ */
+
+.table-container td {
+
+    padding: 11px 14px;
+    color: var(--texto-secundario);
+    border-bottom: 1px solid #EDF0EE;
+    vertical-align: middle;
+    white-space: nowrap;
+
+}
+
+
+.table-container tbody tr {
+
+    transition:
+        background-color 0.15s ease;
+
+}
+
+
+.table-container tbody tr:hover {
+
+    background-color: #F8FAF9;
+
+}
+
+
+/* Remove a borda da última linha */
+
+.table-container tbody tr:last-child td {
+
+    border-bottom: none;
+
+}
+
+
+/* ============================================================
+   COLUNA ID
+   ============================================================ */
+
+.table-container th:first-child,
+.table-container td:first-child {
+
+    width: 60px;
+    color: var(--texto-claro);
+    font-weight: 600;
+
+}
+
+
+/* ============================================================
+   COLUNA NOTA
+   ============================================================ */
+
+.table-container td:nth-child(2) {
+
+    color: var(--texto-principal);
+    font-weight: 600;
+
+}
+
+
+/* ============================================================
+   COLUNAS MOTIVO E TIPO
+   ============================================================ */
+
+.table-container td:nth-child(3),
+.table-container td:nth-child(4) {
+
+    font-weight: 500;
+
+}
+
+
+/* ============================================================
+   COLUNA DATA
+   ============================================================ */
+
+.table-container td:nth-child(5) {
+
+    color: var(--texto-claro);
+    font-size: 12px;
+
+}
+
+
+/* ============================================================
+   COLUNA AÇÕES
+   ============================================================ */
+
+.table-container th:last-child,
+.table-container td:last-child {
+
+    text-align: center;
+    width: 120px;
+
+}
+
+
+/* ============================================================
+   BOTÃO EXCLUIR
+   ============================================================ */
+
+.btn-danger {
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 32px;
+    padding: 0 12px;
+
+    border: 1px solid #F1BFC2;
+    border-radius: 6px;
+
+    background-color: #FFF5F5;
+    color: var(--vermelho);
+
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
+
+}
+
+
+.btn-danger:hover {
+
+    background-color: var(--vermelho);
+    border-color: var(--vermelho);
+    color: var(--branco);
+
+}
+
+
+.btn-danger:active {
+
+    transform: translateY(1px);
+
+}
+
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+
+.footer {
+
+    width: 100%;
+    min-height: var(--footer-height);
+    background-color: var(--branco);
+    border-top: 1px solid var(--cinza-borda);
+
+}
+
+
+.footer-container {
+
+    width: 100%;
+    max-width: 1200px;
+    min-height: var(--footer-height);
+    margin: 0 auto;
+    padding: 10px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
+}
+
+
+.footer-brand {
+
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+
+}
+
+
+.footer-brand-title {
+
+    color: var(--verde-principal);
+    font-size: 12px;
+    font-weight: 700;
+
+}
+
+
+.footer-brand-subtitle {
+
+    color: var(--texto-claro);
+    font-size: 11px;
+    margin-top: 3px;
+
+}
+
+
+.footer-info {
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--texto-claro);
+    font-size: 11px;
+
+}
+
+
+.footer-separator {
+
+    color: var(--cinza-borda);
+
+}
+
+
+/* ============================================================
+   RESPONSIVIDADE
+   ============================================================ */
+
+@media (max-width: 700px) {
+
+    .header-container {
+
+        padding: 0 18px;
+
+    }
+
+
+    .header-navigation {
+
+        display: none;
+
+    }
+
+
+    .home,
+    .devolucao {
+
+        padding: 28px 18px;
+
+    }
+
+
+    .page-title h1 {
+
+        font-size: 23px;
+
+    }
+
+
+    .form-card {
+
+        padding: 22px;
+
+    }
+
+
+    .footer-container {
+
+        padding: 12px 18px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 7px;
+
+    }
+
+}
+
+
+/* ============================================================
+   SCROLLBAR
+   ============================================================ */
+
+::-webkit-scrollbar {
+
+    width: 8px;
+    height: 8px;
+
+}
+
+
+::-webkit-scrollbar-track {
+
+    background: #F0F3F1;
+
+}
+
+
+::-webkit-scrollbar-thumb {
+
+    background: #B8C8BE;
+
+    border-radius: 10px;
+
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+
+    background: #94AA9D;
+
+}

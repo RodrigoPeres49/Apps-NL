@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+
+{% block title %}
+Nota de devolução
+{% endblock %}
+
+{% block content %}
+
+<section class="devolucao">
+
+```
+<div class="page-title">
+    <h1>Nota de devolução</h1>
+    <p>Informe os dados necessários para o lançamento da nota de devolução.</p>
+</div>
+
+
+<!-- =====================================================
+     MENSAGENS
+====================================================== -->
+
+{% with mensagens = get_flashed_messages(with_categories=true) %}
+    {% if mensagens %}
+        <div class="messages">
+
+            {% for categoria, mensagem in mensagens %}
+                <div class="message {{ categoria }}">{{ mensagem }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+
+
+<!-- =====================================================
+     FORMULÁRIO
+====================================================== -->
+
+<div class="form-card">
+
+    <h2>Dados da devolução</h2>
+
+    <form method="POST" action="{{ url_for('devolucao') }}">
+
+        <div class="form-group">
+            <label for="numero_nota">Número da nota</label>
+            <input type="number" id="numero_nota" name="numero_nota" placeholder="Digite o número da nota" min="1" required>
+        </div>
+
+
+        <div class="form-group">
+            <label for="motivo">Motivo da devolução</label>
+            <select id="motivo" name="motivo" required>
+
+                <option value="" selected disabled>Selecione o motivo</option>
+                <option value="2">2 - Falta de mercadoria</option>
+                <option value="8">8 - Produto avariado ou em desacordo</option>
+                <option value="13">13 - Produto impróprio</option>
+
+            </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="tipo">Tipo</label>
+            <select id="tipo" name="tipo" required>
+
+                <option value="" selected disabled>Selecione o tipo</option>
+                <option value="2200">2200 - Devolução de hortifruti</option>
+                <option value="2205">2205 - Devolução de flores</option>
+
+            </select>
+
+        </div>
+
+
+        <div class="form-actions">
+            <button type="submit" class="btn-primary">Continuar</button>
+        </div>
+
+    </form>
+
+</div>
+
+
+<!-- =====================================================
+     DEVOLUÇÕES CADASTRADAS
+====================================================== -->
+
+{% if devolucoes %}
+
+<div class="form-card">
+
+    <h2>
+        Devoluções para lançamento
+    </h2>
+
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th> Nota</th>
+                    <th>Motivo</th>
+                    <th>Tipo</th>
+                    <th>Data</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>  
+                {% for devolucao in devolucoes %}
+                <tr>
+                    <td>{{ devolucao.id }}</td>
+                    <td>{{ devolucao.numero_nota }}</td>
+                    <td>{{ devolucao.motivo }}</td>
+                    <td>{{ devolucao.tipo }}</td>
+                    <td>{{ devolucao.data_lancamento }}</td>
+            
+                    <td>
+                        <form method="POST"
+                              action="{{ url_for('excluir_devolucao_rota', id_devolucao=devolucao.id) }}" 
+                              onsubmit="return confirm('Deseja realmente excluir esta devolução?');"
+                        >  
+                            <button type="submit" class="btn-danger">Excluir</button>
+            
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="form-actions">
+    
+        <form method="POST" action="{{ url_for('executar_devolucao') }}">
+            
+            <button type="submit" class="btn-primary">Executar</button>
+    
+        </form>
+    </div>
+
+</div>
+
+
+{% endif %}
+```
+
+</section>
+
+{% endblock %}
