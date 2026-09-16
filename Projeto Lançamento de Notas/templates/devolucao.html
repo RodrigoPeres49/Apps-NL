@@ -8,7 +8,6 @@ Nota de devolução
 
 <section class="devolucao">
 
-```
 <div class="page-title">
     <h1>Nota de devolução</h1>
     <p>Informe os dados necessários para o lançamento da nota de devolução.</p>
@@ -39,7 +38,14 @@ Nota de devolução
 
     <h2>Dados da devolução</h2>
 
-    <form method="POST" action="{{ url_for('devolucao') }}">
+    <form method="POST" action="{{ url_for('devolucao.devolucao') }}">
+
+
+        <div class="form-group">
+            <label for="data">Data</label>
+            <input type="date" id="data" name="data" required>
+        </div>
+
 
         <div class="form-group">
             <label for="numero_nota">Número da nota</label>
@@ -102,7 +108,8 @@ Nota de devolução
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th> Nota</th>
+                    <th>Data</th>
+                    <th>Nota</th>
                     <th>Motivo</th>
                     <th>Tipo</th>
                     <th>Data</th>
@@ -113,6 +120,7 @@ Nota de devolução
                 {% for devolucao in devolucoes %}
                 <tr>
                     <td>{{ devolucao.id }}</td>
+                    <td>{{ devolucao.data }}</td>
                     <td>{{ devolucao.numero_nota }}</td>
                     <td>{{ devolucao.motivo }}</td>
                     <td>{{ devolucao.tipo }}</td>
@@ -120,7 +128,7 @@ Nota de devolução
             
                     <td>
                         <form method="POST"
-                              action="{{ url_for('excluir_devolucao_rota', id_devolucao=devolucao.id) }}" 
+                              action="{{ url_for('devolucao.excluir_devolucao_rota', id_devolucao=devolucao.id) }}" 
                               onsubmit="return confirm('Deseja realmente excluir esta devolução?');"
                         >  
                             <button type="submit" class="btn-danger">Excluir</button>
@@ -134,7 +142,7 @@ Nota de devolução
     </div>
     <div class="form-actions">
     
-        <form method="POST" action="{{ url_for('executar_devolucao') }}">
+        <form method="POST" action="{{ url_for('devolucao.executar_devolucao') }}">
             
             <button type="submit" class="btn-primary">Executar</button>
     
@@ -145,7 +153,6 @@ Nota de devolução
 
 
 {% endif %}
-```
 
 </section>
 
